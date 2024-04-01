@@ -1,0 +1,21 @@
+name: DockerCompose
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create the DnA application
+      run: |
+        cd deployment
+        docker-compose -f docker-compose-local-basic.yml up -d
